@@ -1,16 +1,13 @@
-import React, { useState } from 'react';
-import './App.css';
-import Header from './Components/Header';
+import React from 'react';
 
-function App() {
+function Log() {
+    const [name, setName] = useState('');
+    const [sets, setSets] = useState('');
+    const [reps, setReps] = useState('');
+    const [weight, setWeight] = useState('');
+    const [exercise, setExercise] = useState([]);
 
-  const [name, setName] = useState('');
-  const [sets, setSets] = useState('');
-  const [reps, setReps] = useState('');
-  const [weight, setWeight] = useState('');
-  const [exercise, setExercise] = useState([]);
-
-  const handleSubmit = (e) => {
+    const handleSubmit = (e) => {
     e.preventDefault();
     const newExercise = { name, sets, reps, weight };
     setExercise([...exercise, newExercise]);
@@ -18,10 +15,10 @@ function App() {
     setSets('');
     setReps('');
     setWeight('');
-  };
+    };
 
-  return (
-    <div className="App">
+    return (
+        <div className="App">
       <Header />
       <form onSubmit={handleSubmit}>
         <input
@@ -63,4 +60,4 @@ function App() {
   );
 }
 
-export default App;
+export default Log;

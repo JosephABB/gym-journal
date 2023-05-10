@@ -1,13 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-function Log() {
-    const [name, setName] = useState('');
-    const [sets, setSets] = useState('');
-    const [reps, setReps] = useState('');
-    const [weight, setWeight] = useState('');
-    const [exercise, setExercise] = useState([]);
+function Log(props) {
+  const [name, setName] = useState('');
+  const [sets, setSets] = useState('');
+  const [reps, setReps] = useState('');
+  const [weight, setWeight] = useState('');
+  const [exercise, setExercise] = useState([]);
 
-    const handleSubmit = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     const newExercise = { name, sets, reps, weight };
     setExercise([...exercise, newExercise]);
@@ -15,11 +15,10 @@ function Log() {
     setSets('');
     setReps('');
     setWeight('');
-    };
+  };
 
-    return (
-        <div className="App">
-      <Header />
+  return (
+    <div className="App">
       <form onSubmit={handleSubmit}>
         <input
           type='text'
@@ -55,7 +54,7 @@ function Log() {
           </li>
         ))}
       </ul>
-
+      {console.log(exercise)}
     </div>
   );
 }

@@ -9,16 +9,6 @@ function App() {
     <div className="App">
       <Header />
       <Session />
-      <h1>
-        PLACEHOLDER EXERCISE
-      </h1>
-      <ul>
-        <li>bench</li>
-        <li>bench</li>
-        <li>bench</li>
-        <li>bench</li>
-        <li>bench</li>
-      </ul>
     </div>
   );
 }

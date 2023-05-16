@@ -1,22 +1,45 @@
 import React, { useState } from 'react';
 
-/* Component that receives a list of objects and 
-displays each one on the webpage */
-function postSession(props) {
-    const sessions = props.myProp;
+/* Component that displays previous sessions with a button */
+function PrevSessions(sessions) {
+    const allSessions = sessions.sessions;
+
+    const [collapsedSessions, setCollapsedSessions] = useState([]);
+
+    const toggleSession = (sessionName) => {
+        if (collapsedSessions.includes(sessionName)) {
+            setCollapsedSessions(collapsedSessions.filter((name) => name !== sessionName));
+        } else {
+            setCollapsedSessions([...collapsedSessions, sessionName]);
+        }
+    };
 
     return (
         <div>
-            {sessionsLogged.length > 0 ? (
-                <div>
-                    {/*display each session's name and exercises*/}
-                    {JSON.stringify(sessionsLogged)}
+            <button onClick={() => setCollapsedSessions([])}>
+                Expand All
+            </button>
+            <button onClick={() => setCollapsedSessions(allSessions.map((session) => session.name))}>
+                Collapse All
+            </button>
+            {allSessions.map((session) => (
+                <div key={session.name}>
+                    <h2 onClick={() => toggleSession(session.name)}> 
+                        {session.name}
+                    </h2>
+                    {!collapsedSessions.includes(session.name) && (
+                        <ul>
+                            {session.data.map((exercise) => (
+                                <li key={exercise.exerciseName}>
+                                    {exercise.exerciseName}: {exercise.sets} sets of {exercise.reps} @ {exercise.weight}
+                                </li>
+                            ))}
+                        </ul>
+                    )}
                 </div>
-            ) : (
-                <p> </p>
-            )}
+            ))}
         </div>
     )
 }
 
-default export postSession;
+export default PrevSessions;

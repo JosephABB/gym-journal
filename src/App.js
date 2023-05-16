@@ -82,9 +82,9 @@ function handleObjectDateChange(event) {
 
 return (
     <div>
-      <form onSubmit={handleObjectSubmit}>
-        <label>
-          Session Name:
+      <div className='sessionContainer'>
+        <form className='sessionHeader' onSubmit={handleObjectSubmit}>
+          Session Name: 
           <input
             type="text"
             value={gymSession.name}
@@ -96,11 +96,9 @@ return (
             value={gymSession.date}
             onChange={handleObjectDateChange} 
           />
-        </label>
-        <button type="submit">Save Gym Session</button>
-      </form>
-      <form onSubmit={handleSubmit}>
-        <label>
+          <button type="submit">Save Gym Session</button>
+        </form>
+        <form className='sessionInputField' onSubmit={handleSubmit}>
           Exercise Name:
           <input
             type="text"
@@ -108,8 +106,6 @@ return (
             value={inputValues.exerciseName}
             onChange={handleInputChange}
           />
-        </label>
-        <label>
           Number of Sets:
           <input
             type="text"
@@ -117,8 +113,6 @@ return (
             value={inputValues.sets}
             onChange={handleInputChange}
           />
-        </label>
-        <label>
           Number of Reps:
           <input
             type="text"
@@ -126,8 +120,6 @@ return (
             value={inputValues.reps}
             onChange={handleInputChange}
           />
-        </label>
-        <label>
           Weight Used:
           <input
             type="text"
@@ -135,10 +127,10 @@ return (
             value={inputValues.weight}
             onChange={handleInputChange}
           />
-        </label>
-        <button type="submit">Add Exercise</button>
-        <CurrentSession session={gymSession} />
-      </form>
+          <button type="submit">Add Exercise</button>
+          <CurrentSession session={gymSession} />
+        </form>
+      </div>
       <PrevSessions sessions={allSessions} />
     </div>
   );

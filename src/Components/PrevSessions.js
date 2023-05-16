@@ -25,7 +25,7 @@ function PrevSessions(sessions) {
             {allSessions.map((session) => (
                 <div key={session.name}>
                     <h2 onClick={() => toggleSession(session.name)}> 
-                        {session.name}
+                        {session.name} ({session.date})
                     </h2>
                     {!collapsedSessions.includes(session.name) && (
                         <ul>

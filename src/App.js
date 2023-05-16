@@ -17,6 +17,7 @@ const [allSessions, setAllSessions] = useState([]);
 //object that contains the session's name and its array of allSessions 
 const [gymSession, setGymSession] = useState({
     name: "",
+    date: "",
     data: []
 });
 
@@ -31,42 +32,52 @@ function handleInputChange(event) {
 
 //function called when the user wants to add an exercise to a session
 function handleSubmit(event) {
-    event.preventDefault();
-    const newObject = {
-        exerciseName: inputValues.exerciseName,
-        sets: inputValues.sets,
-        reps: inputValues.reps,
-        weight: inputValues.weight
-    };
-    setGymSession((prevState) => ({
-        name: prevState.name,
-        data: [...prevState.data, newObject]
-    }));
-    setInputValues({
-        exerciseName: "",
-        sets: "",
-        reps: "",
-        weight: ""
-    });
+  event.preventDefault();
+  const newObject = {
+      exerciseName: inputValues.exerciseName,
+      sets: inputValues.sets,
+      reps: inputValues.reps,
+      weight: inputValues.weight
+  };
+  setGymSession((prevState) => ({
+      name: prevState.name,
+      date: prevState.date,
+      data: [...prevState.data, newObject]
+  }));
+  setInputValues({
+      exerciseName: "",
+      sets: "",
+      reps: "",
+      weight: ""
+  });
 }
 
 //function called when the user saves the gym session
 function handleObjectSubmit(event) {
-    event.preventDefault();
-    const newObjects = [...allSessions, gymSession];
-    setAllSessions(newObjects);
-    setGymSession({
-        name: "",
-        data: []
-    });
+  event.preventDefault();
+  const newObjects = [...allSessions, gymSession];
+  setAllSessions(newObjects);
+  setGymSession({
+      name: "",
+      date: "",
+      data: []
+  });
 }
 
 //function called when the user enters a session's name
 function handleObjectNameChange(event) {
-    setGymSession((prevState) => ({
-        ...prevState,
-        name: event.target.value
-    }));
+  setGymSession((prevState) => ({
+      ...prevState,
+      name: event.target.value
+  }));
+}
+
+//function called when user enters a session's date
+function handleObjectDateChange(event) {
+  setGymSession((prevState) => ({
+    ...prevState,
+    date: event.target.value
+  }));
 }
 
 return (
@@ -78,6 +89,12 @@ return (
             type="text"
             value={gymSession.name}
             onChange={handleObjectNameChange}
+          />
+          Session Date:
+          <input
+            type="text"
+            value={gymSession.date}
+            onChange={handleObjectDateChange} 
           />
         </label>
         <button type="submit">Save Gym Session</button>

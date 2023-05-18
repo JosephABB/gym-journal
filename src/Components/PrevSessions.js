@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import './PrevSessions.css';
 
 /* Component that displays previous sessions with a button */
 function PrevSessions(sessions) {
@@ -22,22 +23,24 @@ function PrevSessions(sessions) {
             <button onClick={() => setCollapsedSessions(allSessions.map((session) => session.name))}>
                 Collapse All
             </button>
-            {allSessions.map((session) => (
-                <div key={session.name}>
-                    <h2 onClick={() => toggleSession(session.name)}> 
-                        {session.name} ({session.date})
-                    </h2>
-                    {!collapsedSessions.includes(session.name) && (
-                        <ul>
-                            {session.data.map((exercise) => (
-                                <li key={exercise.exerciseName}>
-                                    {exercise.exerciseName}: {exercise.sets} sets of {exercise.reps} @ {exercise.weight}
-                                </li>
-                            ))}
-                        </ul>
-                    )}
-                </div>
-            ))}
+            <div>
+                {allSessions.map((session) => (
+                    <div className='container' key={session.name}>
+                        <h2 onClick={() => toggleSession(session.name)}> 
+                            {session.name} ({session.date})
+                        </h2>
+                        {!collapsedSessions.includes(session.name) && (
+                            <ul>
+                                {session.data.map((exercise) => (
+                                    <li key={exercise.exerciseName}>
+                                        {exercise.exerciseName}: {exercise.sets} sets of {exercise.reps} @ {exercise.weight}
+                                    </li>
+                                ))}
+                            </ul>
+                        )}
+                    </div>
+                ))}
+            </div>
         </div>
     )
 }
